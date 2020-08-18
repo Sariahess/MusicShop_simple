@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MusicShop.Song>
+
+@{
+    ViewBag.Title = "Top3RatedSongs";
+}
+
+<h2>Top 3 Songs by Average of Their Ratings</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Song Title
+        </th>
+        <th>
+            Ratings Average
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            Artist
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @item.UserSongs.Average(us => us.Rating).ToString("0.0")
+        </td>
+        <td>
+            @item.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artist.Name)
+        </td>
+    </tr>
+}
+</table>
+<br />
+<p>
+    @Html.ActionLink("Back to Songs List", "Index")
+</p>

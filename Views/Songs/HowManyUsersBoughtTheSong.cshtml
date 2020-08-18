@@ -1,0 +1,12 @@
+﻿@model Song
+@{
+    ViewBag.Title = "HowManyUsersBoughtTheSong";
+}
+
+<h3>Find out how many users bought this song</h3>
+<br />
+<h4>Total of @Model.UserSongs.Count users bought "@Model.Name" by @Model.Artist.Name</h4>
+<br />
+<p>
+    @Html.ActionLink("Back to Songs List", "Index")
+</p>

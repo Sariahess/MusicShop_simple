@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MusicShop.Song>
+
+@{
+    ViewBag.Title = "SongsSoldTheMost";
+}
+
+<h3>Songs recorded the top sales</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Purchase Record
+        </th>
+        <th>
+            Song Title
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            Artist
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                Sold @item.UserSongs.Count times
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.Name)
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<p>@Html.ActionLink("Back to Songs List", "Index")</p>

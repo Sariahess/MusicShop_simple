@@ -1,0 +1,19 @@
+﻿@model User
+@{
+    ViewBag.Title = "BuyTheSong";
+}
+
+<h2>Buy The Song</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <div>Choose a song to buy: @Html.DropDownList("SongId")</div>
+    <br />
+    <div>Rate the song: @Html.DropDownList("Rating")</div>
+    <br />
+    <input type="submit" value=" Buy " />
+}
+<br />
+<h3>@ViewBag.Message</h3>
+<br />
+<p>@Html.ActionLink("Back to Users List", "Index")</p>

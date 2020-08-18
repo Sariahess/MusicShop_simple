@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MusicShop.Artist>
+
+@{
+    ViewBag.Title = "ArtistWhoSoldTheMostSongs";
+}
+
+<h3>Artists who has the highest selling records on their songs are: </h3>
+<br />
+@if (Model == null)
+{
+    <h3>How sad. There are no artists that succeeded to sell any songs.</h3>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Purchased
+            </th>
+            <th>
+                Song Title
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @ViewBag.MaxNum times
+                </td>
+                <td>
+                    @foreach (Song s in item.Songs)
+                    {
+                        if (s.UserSongs.Count == ViewBag.MaxNum)
+                        {
+                            <p>@s.Name</p>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+<br />
+<p>
+    @Html.ActionLink("Back to Artists List", "Index")
+</p>

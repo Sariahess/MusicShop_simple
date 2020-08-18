@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MusicShop.UserSong>
+
+@{
+    ViewBag.Title = "SonsPurchasedByTheUser";
+}
+
+<h2>Songs Purchased By The User</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <div>@Html.DropDownList("UserId")</div>
+    <br />
+    <input type="submit" value="Submit" />
+}
+<br />
+@if (Model == null)
+{
+    <p>Either you didn't choose a user, or this user didn't buy any songs.</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Song Title</th>
+            <th>Date of Purchase</th>
+            <th>Artist</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.Artist.Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+<br />
+<p>
+    @Html.ActionLink("See Users List", "Index")
+</p>
